@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'MyNerdFont';
+    src: url('../fonts/0xProto/0xProtoNerdFont-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --accent: #BF092F;
+    --accentHover: #ffaec0;
+    --darkest: #132440;
+    --dark: #16476A;
+    --light: #3B9797;
+    --white: #bfcfcf;
+
+    background-color: var(--darkest);
+    color: var(--white);
+
+    font-family: 'MyNerdFont', monospace;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accentHover);
+}
+
+.mainContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+
+.navbar {
+    grid-area: 1 / 2 / 2 / 5;
+}
+
+.navigation {
+    display: flex;
+    gap: 2em;
+    border-bottom: var(--dark) solid;
+}
+
+.content {
+    grid-area: 2 / 2 / 6 / 5;
+}
+
+.personalPhoto {
+    max-width: 40em;
+    box-shadow: var(--light) 5px 5px;
+}
+
+.photoGallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.grid-photo {
+    position: relative;
+    overflow: hidden;
+}
+
+.galleryPhoto {
+    max-width: 20em;
+    box-shadow: var(--light) 5px 5px;
+    margin: 1em;
+    object-fit: cover;
+    display: block;
+}
+
+.info-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--dark);
+    transform: translateY(105%);
+    transition: transform 0.3s ease-in-out;
+    padding: 2em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+.grid-photo:hover .info-box {
+    transform: translateY(0);
+}
