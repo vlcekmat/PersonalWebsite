@@ -15,9 +15,9 @@ import GalleryPhoto from '../components/GalleryPhoto.vue';
     </p>
 
     <div class="photoGallery">
-        <GalleryPhoto imgPath="/images/pragueStaraSynagoga.jpg"/>
-        <GalleryPhoto imgPath="/images/prague1.jpg"/>
-        <GalleryPhoto imgPath="/images/manchester.JPG" />
-        <GalleryPhoto imgPath="/images/bruges.jpg"/>
+        <GalleryPhoto imgPath="/images/pragueStaraSynagoga.jpg" title="Old Synagogue, Prague" ss="1/250" iso="400" ape="f/6.3"/>
+        <GalleryPhoto imgPath="/images/prague1.jpg" title="Church of St. Nicholaus, Prague" ss="1/320" iso="160" ape="f/4"/>
+        <GalleryPhoto imgPath="/images/manchester.JPG" title="Medieval Quarter, Manchester" ss="1/200" iso="200" ape="f/6.3" />
+        <GalleryPhoto imgPath="/images/bruges.jpg" title="Bruges" ss="1/320" iso="1250" ape="f/5.6"/>
     </div>
 </template>

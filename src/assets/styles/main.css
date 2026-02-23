@@ -7,12 +7,12 @@
 }
 
 :root {
-    --accent: #BF092F;
-    --accentHover: #ffaec0;
-    --darkest: #132440;
-    --dark: #16476A;
-    --light: #3B9797;
-    --white: #bfcfcf;
+    --accent: #F2994B;
+    --accentHover: rgb(237, 211, 198);
+    --darkest: #111426;
+    --dark: #8C0303;
+    --light: #F20505;
+    --white: #cfc7bf;
 
     background-color: var(--darkest);
     color: var(--white);
@@ -30,16 +30,16 @@ a:hover {
 }
 
 .mainContainer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 .navbar {
-    grid-area: 1 / 2 / 2 / 5;
+    font-size: large;
 }
 
 .navigation {
@@ -48,9 +48,7 @@ a:hover {
     border-bottom: var(--dark) solid;
 }
 
-.content {
-    grid-area: 2 / 2 / 6 / 5;
-}
+.content {}
 
 .personalPhoto {
     max-width: 40em;
@@ -58,6 +56,7 @@ a:hover {
 }
 
 .photoGallery {
+    max-width: 70%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -82,15 +81,36 @@ a:hover {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 15em;
     background-color: var(--dark);
     transform: translateY(105%);
     transition: transform 0.3s ease-in-out;
     padding: 2em;
 }
 
+dl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 0;
+}
+
+dt,
+dd {
+    margin: 0;
+}
+
 dt {
-    font-weight: bold;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+dd {
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 .grid-photo:hover .info-box {
