@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-parsing-error -->
 <template>
     <div class="grid-photo">
         <img :src="props.imgPath" class="galleryPhoto"></img>

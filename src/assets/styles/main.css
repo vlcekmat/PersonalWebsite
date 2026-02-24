@@ -1,3 +1,62 @@
+/* 1. Oprava box-sizingu pro všechny prvky - základ pro předvídatelný layout */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Odstranění výchozích marginů, aby nic netlačilo stránku ke stranám */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Zajištění, aby body zabíralo celou výšku a text byl vyhlazený */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* 4. Resety pro formulářové prvky a seznamy (často dělají neplechu) */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* 5. Obrázky jako blokové prvky (zabrání mezerám pod nimi) */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Odstranění animací pro lidi, co to mají v systému vypnuté (přístupnost) */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @font-face {
   font-family: "MyNerdFont";
   src: url("../fonts/0xProto/0xProtoNerdFont-Regular.ttf") format("woff2");
@@ -78,6 +137,7 @@ a:hover {
 }
 
 .content {
+  padding-bottom: 1.5em;
 }
 
 .personalPhoto {
@@ -101,7 +161,7 @@ a:hover {
 }
 
 .galleryPhoto {
-  max-width: 23.7em;
+  max-width: 23.2em;
   object-fit: cover;
   display: block;
 }
@@ -110,15 +170,11 @@ a:hover {
 .personalPhoto {
   border: 2px solid var(--light);
 
-  outline: 4px solid var(--darkest);
-
-  box-shadow:
-    6px 6px 0px var(--darkGrey),
-    10px 10px 0px var(--black);
-
   transition: all 0.25s ease-out;
   position: relative;
   z-index: 1;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .grid-photo:hover .galleryPhoto,
@@ -145,8 +201,6 @@ a:hover {
 
   border-top: 1px solid var(--accent);
   border-bottom: 4px solid var(--darkGrey);
-
-  border-left: 4px solid var(--accent);
 
   backdrop-filter: blur(4px);
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.8);
@@ -193,4 +247,18 @@ dd {
 
 .grid-photo:hover .info-box {
   transform: translateY(0);
+}
+
+h1 {
+  margin-top: 1em;
+}
+
+h2 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }

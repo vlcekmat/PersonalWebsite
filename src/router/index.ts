@@ -1,13 +1,15 @@
-import Gallery from '@/views/Gallery.vue'
-import Home from '@/views/Home.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import Gallery from "@/views/Gallery.vue";
+import Home from "@/views/Home.vue";
+import AboutView from "@/views/AboutView.vue";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', component: Home },
-    { path: '/gallery', component: Gallery }
+    { path: "/", component: Home },
+    { path: "/gallery", component: Gallery },
+    { path: "/about", component: AboutView },
   ],
-})
+});
 
-export default router
+export default router;
