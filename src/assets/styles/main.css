@@ -82,7 +82,6 @@ a:hover {
 
 .personalPhoto {
   max-width: 40em;
-  box-shadow: var(--dark) 5px 5px;
 }
 
 .photoGallery {
@@ -99,50 +98,97 @@ a:hover {
 .grid-photo {
   position: relative;
   overflow: hidden;
-  padding-bottom: 0.3em;
-  padding-right: 0.3em;
 }
 
 .galleryPhoto {
-  max-width: 23.9em;
-  box-shadow: var(--dark) 1em 1em;
+  max-width: 23.7em;
   object-fit: cover;
   display: block;
+}
+
+.galleryPhoto,
+.personalPhoto {
+  border: 2px solid var(--light);
+
+  outline: 4px solid var(--darkest);
+
+  box-shadow:
+    6px 6px 0px var(--darkGrey),
+    10px 10px 0px var(--black);
+
+  transition: all 0.25s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.grid-photo:hover .galleryPhoto,
+.personalPhoto:hover {
+  border-color: var(--accent);
+
+  z-index: 10;
+
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 0 15px var(--accent),
+    0 0 40px var(--accent),
+    0 0 80px var(--glow-color);
 }
 
 .info-box {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 15em;
-  background-color: var(--dark);
-  transform: translateY(105%);
-  transition: transform 0.3s ease-in-out;
-  padding: 1em;
+  width: 100%;
+  box-sizing: border-box;
+
+  background-color: rgba(26, 27, 38, 0.95);
+
+  border-top: 1px solid var(--accent);
+  border-bottom: 4px solid var(--darkGrey);
+
+  border-left: 4px solid var(--accent);
+
+  backdrop-filter: blur(4px);
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.8);
+
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1rem;
+  z-index: 20;
+}
+
+.info-box h3 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: 1.1rem;
+  color: var(--white);
+  border-bottom: 1px dashed var(--light);
+  padding-bottom: 0.3em;
+  text-shadow: none;
 }
 
 dl {
   display: flex;
   flex-wrap: wrap;
-  margin: 0;
-}
-
-dt,
-dd {
-  margin: 0;
+  gap: 1em;
 }
 
 dt {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  width: 100%;
-  margin-bottom: 0.05em;
+  letter-spacing: 1px;
+  color: var(--light);
+  opacity: 0.8;
+  margin-bottom: 0;
 }
 
 dd {
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 1em;
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin: 0;
+  font-family: monospace;
+  text-shadow: 0 0 5px rgba(255, 158, 100, 0.3);
 }
 
 .grid-photo:hover .info-box {
