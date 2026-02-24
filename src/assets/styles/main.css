@@ -64,6 +64,14 @@ a:hover {
     grid-row-gap: 0px;
 }
 
+@media (width <=1200px) {
+    .photoGallery {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
 .grid-photo {
     position: relative;
     overflow: hidden;
