@@ -1,16 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import RetroOverlay from "./components/RetroOverlay.vue";
+</script>
 
 <template>
+  <RetroOverlay />
   <div class="mainContainer">
     <div class="navbar">
       <h1>MarlaSite</h1>
       <p>
-        Welcome to my personal website! My name's Marladian and I am a software engineering student who likes building websites the old way.
+        Welcome to my personal website! My name's Marladian and I am a software
+        engineering student who likes building websites the old way.
       </p>
-    <nav class="navigation">
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/gallery">Photo Gallery</RouterLink>
-    </nav>
+      <nav class="navigation">
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/gallery">Photo Gallery</RouterLink>
+      </nav>
     </div>
 
     <div class="content">

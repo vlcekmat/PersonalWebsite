@@ -17,6 +17,6 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 const props = defineProps(['imgPath', 'title', 'iso', 'ss', 'ape'])
 </script>

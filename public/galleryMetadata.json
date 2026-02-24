@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Old Synagogue, Prague",
+    "path": "/images/pragueStaraSynagoga.jpg",
+    "shutterSpeed": "1/250",
+    "iso": "400",
+    "aperture": "f/6.3"
+  },
+  {
+    "id": 2,
+    "title": "Church of St. Nicholaus, Prague",
+    "path": "/images/prague1.jpg",
+    "shutterSpeed": "1/320",
+    "iso": "160",
+    "aperture": "f/4"
+  },
+  {
+    "id": 3,
+    "title": "Medieval Quarter, Manchester",
+    "path": "/images/manchester.JPG",
+    "shutterSpeed": "1/200",
+    "iso": "200",
+    "aperture": "f/6.3"
+  },
+  {
+    "id": 4,
+    "title": "Bruges",
+    "path": "/images/bruges.jpg",
+    "shutterSpeed": "1/320",
+    "iso": "1250",
+    "aperture": "f/5.6"
+  }
+]
