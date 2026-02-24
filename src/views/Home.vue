@@ -7,7 +7,7 @@ import UpdatesSection from "@/components/UpdatesSection.vue";
   <h2>Home</h2>
   <div class="two-column-grid">
     <div>
-      <p>
+      <p class="typed">
         Hello dear web traveler, welcome to my personal website! Why don't you
         take a rest and explore this niche corner of the internet for a bit? As
         you may have noticed, I am a big fan of the 32bit retro look, therefore
@@ -15,13 +15,13 @@ import UpdatesSection from "@/components/UpdatesSection.vue";
         work in progress, but I'm quite determined to make this place much
         cooler!
       </p>
-      <p>
+      <p class="typed">
         I made this page to share my interests - photographs, coding projects
         and other in a more authentic way than is possible on regular social
         media. It is also supposed to be an experimental site of sort, so expect
         a lot of random games, activities and hidden easter eggs around!
       </p>
-      <p>
+      <p class="typed">
         Since you read this all the way to here, why don't you sign my
         guestbook?
       </p>
