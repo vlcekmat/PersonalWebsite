@@ -6,7 +6,7 @@ const props = defineProps(["title", "date", "text"]);
   <div class="update-card">
     <div class="myflex">
       <h4>{{ props.title }}</h4>
-      <span class="mydate">{{ props.date }}}</span>
+      <span class="mydate">{{ props.date }}</span>
     </div>
     <p>
       {{ props.text }}

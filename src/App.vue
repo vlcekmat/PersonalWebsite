@@ -4,7 +4,8 @@ import RetroOverlay from "./components/RetroOverlay.vue";
 const typeSpeed = 5;
 
 async function typeAllParagraphs() {
-  const paragraphs = document.getElementsByClassName("typed");
+  const paragraphs: HTMLAllCollectionOf<Element> =
+    document.getElementsByClassName("typed");
 
   for (const p of paragraphs) {
     p.style.opacity = "0";
