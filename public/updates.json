@@ -2,13 +2,13 @@
   {
     "id": 2,
     "title": "Second update",
-    "date": "24/2/2026",
+    "date": "2/24/2026",
     "text": "I just added another update to see what multiple updates look like in this section."
   },
   {
     "id": 1,
     "title": "First ever update",
-    "date": "24/2/2026",
-    "text": "My first ever update was published! The date is in the European format, since I am a European. Just wanted to make that clear :-D. Oh and it's my name day today btw!"
+    "date": "2/24/2026",
+    "text": "My first ever update was published! Oh and it's my name day today btw!"
   }
 ]

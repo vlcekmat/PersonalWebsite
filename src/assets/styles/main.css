@@ -66,23 +66,18 @@ svg {
 }
 
 :root {
-  /* POZADÍ: Zůstáváme u "Storm Blue" - je to skvělý kontrast k oranžové */
   --darkest: #1a1b26;
-  --darkGrey: #24283b; /* Světlejší pozadí pro karty */
+  --darkGrey: #24283b;
 
-  /* TEXT: Jemná bílá, aby nerušila barvy */
   --white: #c0caf5;
   --black: #15161e;
 
-  /* AKCENTY: Tady přichází OHEŇ */
-  --accent: #ff9e64; /* "Safety Orange" - hlavní barva pro odkazy a rámečky */
-  --accentHover: #db4b4b; /* "Brick Red" - pro hover stavy */
+  --accent: #ff9e64;
+  --accentHover: #db4b4b;
 
-  /* DEKORACE */
-  --dark: #4a1c1c; /* Tmavě rudá pro hluboké stíny */
-  --light: #ffe5c7; /* Neonová červeno-růžová (Laser Red) */
+  --dark: #4a1c1c;
+  --light: #ffe5c7;
 
-  /* ZÁŘE: Oranžová záře jako stará elektronka */
   --glow-color: rgba(255, 158, 100, 0.5);
 
   background-color: var(--darkest);
@@ -96,12 +91,11 @@ body {
 
   background-color: var(--darkest);
 
-  /* Cyberpunk mřížka */
   background-image:
     linear-gradient(rgba(42, 195, 222, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(42, 195, 222, 0.05) 1px, transparent 1px);
 
-  background-size: 40px 40px; /* Velikost čtverečků */
+  background-size: 40px 40px;
   background-position: center top;
 }
 
@@ -141,7 +135,7 @@ a:hover {
 }
 
 .personalPhoto {
-  max-width: 40em;
+  max-height: 20vw;
 }
 
 .photoGallery {
@@ -153,6 +147,7 @@ a:hover {
   grid-row-gap: 1em;
   margin-top: 2em;
   padding-top: 1em;
+  justify-content: space-between;
 }
 
 .grid-photo {
@@ -161,7 +156,7 @@ a:hover {
 }
 
 .galleryPhoto {
-  max-width: 23.2em;
+  max-height: 27vw;
   object-fit: cover;
   display: block;
 }
@@ -173,7 +168,6 @@ a:hover {
   transition: all 0.25s ease-out;
   position: relative;
   z-index: 1;
-  margin-top: 1em;
   margin-bottom: 1em;
 }
 

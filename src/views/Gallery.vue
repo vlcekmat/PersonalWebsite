@@ -25,11 +25,13 @@ onMounted(async () => {
     fleeting moment and freeze it in time. See? That's me when I was about 13
     already holding a camera in my hand!
   </p>
+  <br>
   <img
     class="personalPhoto"
     src="../assets/images/newYorkPhoto.png"
     alt="13 year old me holding a camera"
   />
+  <br>
 
   <p>
     Below you will find some of my photographs taken from around the world. I

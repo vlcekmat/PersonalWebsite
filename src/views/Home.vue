@@ -15,15 +15,17 @@ import UpdatesSection from "@/components/UpdatesSection.vue";
         work in progress, but I'm quite determined to make this place much
         cooler!
       </p>
+      <br>
       <p class="typed">
         I made this page to share my interests - photographs, coding projects
         and other in a more authentic way than is possible on regular social
         media. It is also supposed to be an experimental site of sort, so expect
         a lot of random games, activities and hidden easter eggs around!
       </p>
-      <p class="typed">
+      <br>
+      <p class="typed links-to-fix">
         Since you read this all the way to here, why don't you sign my
-        guestbook?
+        <a href="guestbook">guestbook</a>?
       </p>
     </div>
 
@@ -31,6 +33,7 @@ import UpdatesSection from "@/components/UpdatesSection.vue";
       <UpdatesSection />
     </div>
   </div>
+
 </template>
 
 <style scoped>
