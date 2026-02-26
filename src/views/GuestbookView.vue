@@ -147,4 +147,8 @@ onMounted(async () => {
 .messages-container {
   width: 50vw;
 }
+
+textarea {
+  resize: vertical;
+}
 </style>
