@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import GuestbookMessage from "@/components/GuestbookMessage.vue";
+import type { GuestbookMessage } from "@/model/GuestbookMessage";
+import GuestbookMessageComponent from "@/components/GuestbookMessage.vue";
 import { createClient } from "@supabase/supabase-js";
 
 const enteredName = ref("Anonymous");
@@ -33,7 +34,7 @@ const sendMessage = async () => {
         id: newMessage.id,
         name: newMessage.name,
         timestamp: new Date(newMessage.created_at).toLocaleString(),
-        text: newMessage.message,
+        message: newMessage.message,
       });
 
       enteredMessage.value = "";
@@ -46,20 +47,18 @@ const sendMessage = async () => {
 
 onMounted(async () => {
   try {
-    let { data, error } = await supabase.from("guestbook").select("*");
+    const { data, error } = await supabase.from("guestbook").select("*");
 
     if (error) {
       throw error;
     }
 
-    data.forEach((message) => {
-      fetchedMessages.value.push({
-        id: message.id,
-        name: message.name,
-        timestamp: new Date(message.created_at).toLocaleString(),
-        text: message.message,
-      });
-    });
+    data?.forEach((message) => fetchedMessages.value.push({
+      id: message.id,
+      name: message.name,
+      message: message.message,
+      timestamp: new Date(message.created_at).toLocaleString(),
+    }));
   } catch (error) {
     console.error("Error while loading the guestbook messages:", error);
   }
@@ -95,12 +94,12 @@ onMounted(async () => {
 
     <div class="messages-container">
       <h5>Left messages</h5>
-      <GuestbookMessage
+      <GuestbookMessageComponent
         v-for="mes in fetchedMessages.slice().reverse()"
         :key="mes.id"
         :name="mes.name"
         :datetime="mes.timestamp"
-        :text="mes.text"
+        :text="mes.message"
       />
     </div>
   </div>
