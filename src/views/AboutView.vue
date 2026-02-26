@@ -52,7 +52,7 @@
 
 <style scoped>
 .paragraph-section{
-  max-width: 40ch;
+  max-width: 50em;
 }
 
 .my-flex {
@@ -71,12 +71,12 @@
   margin-top: 1em;
   margin-bottom: 1em;
 
-  width: 100%;
+  max-width: 30em;
   aspect-ratio: 1 / 1;
 }
 
 .image-section {
-  width: 150em;
+  width: 80em;
 }
 
 .profile:hover {

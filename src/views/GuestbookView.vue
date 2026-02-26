@@ -13,6 +13,8 @@ const BE_URL = "https://uadnilrvvoketmvhvusn.supabase.co";
 const API_KEY = "sb_publishable_5Jij7ztFwHu2TQQqEQ6RhA_pBn0i1US";
 const supabase = createClient(BE_URL, API_KEY);
 
+const isLoading = ref(true);
+
 const sendMessage = async () => {
   try {
     const { data, error } = await supabase
@@ -52,6 +54,8 @@ onMounted(async () => {
     if (error) {
       throw error;
     }
+
+    isLoading.value = false;
 
     data?.forEach((message) => fetchedMessages.value.push({
       id: message.id,
@@ -94,13 +98,25 @@ onMounted(async () => {
 
     <div class="messages-container">
       <h5>Left messages</h5>
-      <GuestbookMessageComponent
-        v-for="mes in fetchedMessages.slice().reverse()"
-        :key="mes.id"
-        :name="mes.name"
-        :datetime="mes.timestamp"
-        :text="mes.message"
-      />
+
+      <div v-if="isLoading" class="loading-wrapper">
+        <div class="digital-spinner"></div>
+      </div>
+
+      <div v-else>
+        <GuestbookMessageComponent
+            v-for="mes in fetchedMessages.slice().reverse()"
+            :key="mes.id"
+            :name="mes.name"
+            :datetime="mes.timestamp"
+            :text="mes.message"
+        />
+
+        <p v-if="fetchedMessages.length === 0" class="no-messages">
+          No messages yet. Be the first to sign!
+        </p>
+      </div>
+
     </div>
   </div>
 </template>
@@ -150,6 +166,40 @@ onMounted(async () => {
 
 textarea {
   resize: vertical;
+}
+
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3em 0;
+  color: var(--dark, #333);
+}
+
+.digital-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--dark);
+  border-left-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1em;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.no-messages {
+  font-style: italic;
+  opacity: 0.7;
+  margin-top: 1em;
 }
 
 @media screen and (max-width: 900px) {
