@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import UpdatesSection from "@/components/UpdatesSection.vue";
+import LinksSection from "@/components/LinksSection.vue";
 </script>
 
 <template>
@@ -33,6 +34,8 @@ import UpdatesSection from "@/components/UpdatesSection.vue";
       <UpdatesSection />
     </div>
   </div>
+
+  <LinksSection />
 
 </template>
 
