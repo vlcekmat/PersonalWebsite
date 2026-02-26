@@ -109,14 +109,15 @@ onMounted(async () => {
 .my-flex {
   display: flex;
   justify-content: left;
-  gap: 10em;
+  gap: 5em;
   margin-top: 3em;
 }
 
 .guestbook-form {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 100%;
+  min-width: 30%;
 }
 
 .guestbook-form label {
@@ -149,5 +150,20 @@ onMounted(async () => {
 
 textarea {
   resize: vertical;
+}
+
+@media screen and (max-width: 900px) {
+  .my-flex {
+    flex-direction: column;
+    gap: 3em;
+  }
+
+  .messages-container {
+    width: 100%;
+  }
+
+  .guestbook-form {
+    max-width: 100%;
+  }
 }
 </style>

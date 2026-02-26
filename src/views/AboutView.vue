@@ -3,7 +3,7 @@
   <h2>About</h2>
 
   <div class="my-flex">
-    <div>
+    <div class="paragraph-section">
       <p class="typed links-to-fix">
         My name is Matěj (Marladian my nickname, hence the website name.
         Original, I know.), I'm a 24 year old software engineering student from
@@ -51,6 +51,10 @@
 </template>
 
 <style scoped>
+.paragraph-section{
+  max-width: 40ch;
+}
+
 .my-flex {
   display: flex;
   flex-direction: row;
@@ -78,5 +82,18 @@
 .profile:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 10px var(--light);
+}
+
+@media screen and (max-width: 950px) {
+  .my-flex {
+    flex-direction: column;
+    gap: 3em;
+  }
+
+  .image-section {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>
