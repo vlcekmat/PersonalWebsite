@@ -26,7 +26,7 @@
         that. I was born in 2001, so I experienced the time of the "old
         internet" just a little bit, but I still miss the times of flash games
         and crazy scrap book like websites. It feels like nowdays most websites
-        look all the same. I call it "minimalism hell". All my friends know that
+        look all the same. I call it "minimalism hell". All my friends know
         I could rant about that for hours.
       </p>
 

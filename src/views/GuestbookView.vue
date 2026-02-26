@@ -76,7 +76,7 @@ onMounted(async () => {
     anything, feel free to leave it here!
   </p>
 
-  <p>To leave a message, simply fill the form below and hit submit!</p>
+  <p class="bordered-bottom">To leave a message, simply fill the form below and hit submit!</p>
 
   <div class="my-flex">
     <form class="guestbook-form" @submit.prevent="sendMessage">
@@ -200,6 +200,11 @@ textarea {
   font-style: italic;
   opacity: 0.7;
   margin-top: 1em;
+}
+
+.bordered-bottom {
+  border-bottom: var(--accent) 0.3em solid;
+  padding-bottom: 2em;
 }
 
 @media screen and (max-width: 900px) {

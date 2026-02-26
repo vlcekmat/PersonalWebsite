@@ -27,12 +27,6 @@
 </template>
 
 <style scoped>
-.links-section {
-  border-top: var(--accent) 0.3em solid;
-  padding-top: 0.5em;
-  margin-top: 2em;
-}
-
 .links-list {
   display: flex;
   flex-direction: column;
