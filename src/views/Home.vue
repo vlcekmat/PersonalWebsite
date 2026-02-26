@@ -42,4 +42,11 @@ import UpdatesSection from "@/components/UpdatesSection.vue";
   grid-template-columns: auto auto;
   column-gap: 2em;
 }
+
+@media screen and (max-width: 730px) {
+  .two-column-grid {
+    display: flex;
+    flex-direction: column;
+  }
+}
 </style>

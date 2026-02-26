@@ -34,4 +34,10 @@ h3 {
   padding-right: 15em;
   padding-bottom: 0.5em;
 }
+
+@media  screen and (max-width: 450px) {
+  h3 {
+    padding-right: 0;
+  }
+}
 </style>
