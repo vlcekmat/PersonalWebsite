@@ -66,8 +66,6 @@
   border: 2px solid var(--light);
 
   transition: all 0.25s ease-out;
-  position: relative;
-  z-index: 1;
   margin-top: 1em;
   margin-bottom: 1em;
 
@@ -87,13 +85,20 @@
 @media screen and (max-width: 950px) {
   .my-flex {
     flex-direction: column;
+    justify-content: center;
     gap: 3em;
   }
 
   .image-section {
-    width: 80%;
+    width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    justify-items: center;
+  }
+
+  .image-section img {
+    max-width: 50vw;
   }
 }
 </style>
