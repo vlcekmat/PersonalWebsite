@@ -38,7 +38,7 @@ import WebringsSection from "@/components/WebringsSection.vue";
 
   <div class="two-column-grid bordered">
     <LinksSection />
-    <WebringsSection />
+    <WebringsSection/>
   </div>
 
 

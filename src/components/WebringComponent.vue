@@ -1,12 +1,18 @@
 <script setup lang="ts">
-
+const props = defineProps([
+    "previous",
+    "next",
+    "webringName",
+    "webringLink"
+    ]
+);
 </script>
 
 <template>
   <div class="webring-component">
-    <a class="navigation-arrow"><</a>
-    <h4><a class="webring-link">Test Webring Name</a></h4>
-    <a class="navigation-arrow">></a>
+    <a class="navigation-arrow" :href="props.previous"><</a>
+    <h4><a class="webring-link" :href="props.webringLink">{{props.webringName}}</a></h4>
+    <a class="navigation-arrow" :href="props.next">></a>
   </div>
 </template>
 
