@@ -11,7 +11,7 @@ const props = defineProps([
 <template>
   <div class="webring-component">
     <a class="navigation-arrow" :href="props.previous"><</a>
-    <h4><a class="webring-link" :href="props.webringLink">{{props.webringName}}</a></h4>
+    <h4><a class="webring-name">{{props.webringName}}</a></h4>
     <a class="navigation-arrow" :href="props.next">></a>
   </div>
 </template>
@@ -31,6 +31,11 @@ const props = defineProps([
 
 .navigation-arrow:hover {
   color: var(--light);
+}
+
+.webring-name {
+  color: var(--white);
+  font-weight: bold;
 }
 
 .webring-link {
