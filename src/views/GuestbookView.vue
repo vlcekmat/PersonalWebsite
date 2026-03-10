@@ -149,6 +149,8 @@ onMounted(async () => {
   background-color: var(--white);
   color: var(--black);
   font-weight: bold;
+  accent-color: var(--accent);
+  caret-color: var(--accent);
 }
 
 .guestbook-form button {
@@ -158,6 +160,7 @@ onMounted(async () => {
   padding: 0.5em;
   font-size: 1.2em;
   cursor: pointer;
+  accent-color: var(--accent);
 }
 
 .messages-container {
