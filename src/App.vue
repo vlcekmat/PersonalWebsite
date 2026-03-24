@@ -52,6 +52,7 @@ window.onload = typeAllParagraphs;
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/gallery">Photo Gallery</RouterLink>
+        <RouterLink to="/competitions">Competitions</RouterLink>
         <RouterLink to="/guestbook">Guestbook</RouterLink>
       </nav>
     </div>

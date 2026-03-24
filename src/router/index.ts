@@ -3,6 +3,7 @@ import Home from "@/views/Home.vue";
 import AboutView from "@/views/AboutView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import GuestbookView from '@/views/GuestbookView.vue'
+import CompetetionsView from '@/views/CompetitionsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +11,8 @@ const router = createRouter({
     { path: "/", component: Home },
     { path: "/gallery", component: Gallery },
     { path: "/about", component: AboutView },
-    { path: "/guestbook", component: GuestbookView }
+    { path: "/guestbook", component: GuestbookView },
+    { path: "/competitions", component: CompetetionsView }
   ],
 });
 
