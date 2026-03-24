@@ -130,12 +130,18 @@ a:hover {
   padding-bottom: 0.5em;
 }
 
+@media screen and (max-width: 750px) {
+  .navigation {
+    flex-direction: column;
+  }
+}
+
 .content {
   padding-bottom: 1.5em;
 }
 
 .personalPhoto {
-  max-height: 20vw;
+  max-width: 20em;
 }
 
 .photoGallery {
@@ -156,10 +162,11 @@ a:hover {
 }
 
 .galleryPhoto {
-  max-height: 27vw;
+  max-height: 25.5em;
   object-fit: cover;
   display: block;
 }
+
 
 .galleryPhoto,
 .personalPhoto {
@@ -182,6 +189,17 @@ a:hover {
     0 0 15px var(--accent),
     0 0 40px var(--accent),
     0 0 80px var(--glow-color);
+}
+
+@media screen and (max-width: 480px) {
+  .personalPhoto {
+    max-width: 100%;
+  }
+
+  .galleryPhoto {
+    max-width: 100%;
+    max-height: none;
+  }
 }
 
 .info-box {

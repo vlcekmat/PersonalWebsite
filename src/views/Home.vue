@@ -1,6 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import UpdatesSection from "@/components/UpdatesSection.vue";
+import LinksSection from "@/components/LinksSection.vue";
+import WebringsSection from "@/components/WebringsSection.vue";
 </script>
 
 <template>
@@ -34,6 +36,12 @@ import UpdatesSection from "@/components/UpdatesSection.vue";
     </div>
   </div>
 
+  <div class="two-column-grid bordered">
+    <LinksSection />
+    <WebringsSection/>
+  </div>
+
+
 </template>
 
 <style scoped>
@@ -41,5 +49,18 @@ import UpdatesSection from "@/components/UpdatesSection.vue";
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 2em;
+}
+
+.bordered {
+  border-top: var(--accent) 0.3em solid;
+  padding-top: 0.5em;
+  margin-top: 2em;
+}
+
+@media screen and (max-width: 730px) {
+  .two-column-grid {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

@@ -1,14 +1,13 @@
 <script setup lang="ts">
-const props = defineProps(['name', 'datetime', 'text']);
+const props = defineProps(["name", "datetime", "text"]);
 </script>
 
 <template>
   <div class="guest-book-message-card">
     <h6>{{ props.name }}</h6>
     <span class="datetime">{{ props.datetime }}</span>
-    <p>{{props.text}}</p>
+    <p>{{ props.text }}</p>
   </div>
-
 </template>
 
 <style scoped>
@@ -18,7 +17,9 @@ const props = defineProps(['name', 'datetime', 'text']);
   box-shadow: var(--dark) 0.3em 0.3em;
 
   margin-bottom: 1em;
+
+  max-height: 10em;
+
+  overflow-y: scroll;
 }
-
-
 </style>
