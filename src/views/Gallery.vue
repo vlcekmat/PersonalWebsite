@@ -19,7 +19,7 @@ onMounted(async () => {
 
 <template>
   <h2>Photo Gallery</h2>
-  <p>
+  <p class="typing">
     Photography is a big interest of mine. I have been taking pictures since I
     was a small kid. It has always fascinated me how we can simply capture any
     fleeting moment and freeze it in time. See? That's me when I was about 13
@@ -52,3 +52,41 @@ onMounted(async () => {
     />
   </div>
 </template>
+
+<style scoped>
+.photoGallery {
+  display: block;
+  column-count: 3;
+  column-gap: 1.5rem;
+  border-top: var(--accent) solid 0.5em;
+  margin-top: 2em;
+  padding-top: 1.5em;
+}
+
+:deep(.grid-photo) {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  width: 100%;
+}
+
+:deep(.galleryPhoto) {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .photoGallery {
+    column-count: 2;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .photoGallery {
+    column-count: 1;
+  }
+}
+</style>

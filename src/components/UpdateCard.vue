@@ -25,9 +25,9 @@ p {
 
 .update-card {
   box-shadow: var(--dark) 0.3em 0.3em;
-  padding-right: 0.5em;
-  padding-bottom: 0.5em;
+  padding: 0.5em;
   margin-bottom: 0.5em;
+  background-color: var(--black);
 }
 
 .mydate {

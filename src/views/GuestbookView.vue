@@ -76,7 +76,7 @@ onMounted(async () => {
     anything, feel free to leave it here!
   </p>
 
-  <p class="bordered-bottom">To leave a message, simply fill the form below and hit submit!</p>
+  <p class="bordered-bottom typing">To leave a message, simply fill the form below and hit submit!</p>
 
   <div class="my-flex">
     <form class="guestbook-form" @submit.prevent="sendMessage">
@@ -122,6 +122,10 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.messages-container > h5 {
+  margin-bottom: 2em;
+}
+
 .my-flex {
   display: flex;
   justify-content: left;

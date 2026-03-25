@@ -17,7 +17,7 @@ onMounted(async () => {
 
 <template>
   <h3>Updates</h3>
-  <ol>
+  <ol class="updates-container">
     <UpdateCard
       v-for="update in updates"
       :key="update.id"
@@ -33,6 +33,12 @@ h3 {
   border-bottom: var(--accent) 0.3em solid;
   padding-right: 15em;
   padding-bottom: 0.5em;
+}
+
+.updates-container {
+  max-height: 30em;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media  screen and (max-width: 450px) {

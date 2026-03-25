@@ -28,8 +28,8 @@
 
 <style scoped>
 .links-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 0.5em;
 }
 
@@ -41,7 +41,21 @@ dt {
 dd {
   margin-left: 1em;
   margin-bottom: 1em;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
+@media screen and (min-width: 1000px) {
+  .links-list {
+    grid-template-columns: auto 1fr;
+    column-gap: 2em;
+    row-gap: 1em;
+    align-items: baseline;
+  }
 
+  dd {
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+}
 </style>

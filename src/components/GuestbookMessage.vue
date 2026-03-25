@@ -12,9 +12,11 @@ const props = defineProps(["name", "datetime", "text"]);
 
 <style scoped>
 .guest-book-message-card {
-  padding: 1em 1em 1em 0em;
+  padding: 1em 1em 1em 1em;
 
   box-shadow: var(--dark) 0.3em 0.3em;
+
+  background-color: var(--black);
 
   margin-bottom: 1em;
 

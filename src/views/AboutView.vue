@@ -32,7 +32,7 @@
 
       <br />
 
-      <p class="typed links-to-fix">
+      <p class="typed links-to-fix typing">
         Also if you'd like to exchange website links or just send me a message,
         feel free to send me an email:
         <a href="mailto:vlcekmat@seznam.cz">vlcekmat@seznam.cz</a> or you can

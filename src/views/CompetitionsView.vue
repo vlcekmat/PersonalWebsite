@@ -2,7 +2,7 @@
 import { ref, reactive } from 'vue';
 
 const moznostiVek = ["Dospělí", "Mládež", "Junioři-2", "Junioři-1", "Děti-2", "Děti-1", "Senioři-1", "Senioři-2", "Senioři-3"];
-const moznostiTrida = ["E", "D", "C", "B", "A", "M"];
+const moznostiTrida = ["E", "D", "C", "B", "A"];
 const moznostiDisciplina = ["STT", "LAT", "KOMB"];
 
 interface Kategorie {
@@ -126,7 +126,6 @@ const fetchSouteze = async () => {
   margin-top: 1em;
 }
 
-/* RESPONZIVNÍ LAYOUT */
 .responsive-layout {
   display: flex;
   flex-direction: row;
@@ -134,17 +133,15 @@ const fetchSouteze = async () => {
   margin-top: 2em;
 }
 
-/* Sidebar na desktopu fixní šířka */
 .sidebar {
   flex: 0 0 300px;
 }
 
 .results-area {
   flex: 1;
-  min-width: 0; /* Důležité pro flexbox a dlouhé texty */
+  min-width: 0;
 }
 
-/* FORMULÁŘ */
 .cyber-form {
   background: var(--darkGrey);
   padding: 1.5em;
@@ -199,7 +196,6 @@ select:focus {
   box-shadow: 0 0 15px var(--glow-color);
 }
 
-/* KARTY */
 .status-bar {
   margin-bottom: 1.5em;
   font-size: 0.8rem;
@@ -256,7 +252,7 @@ select:focus {
 
 .kat-tag {
   display: flex;
-  flex-wrap: wrap; /* Pro velmi malé telefony */
+  flex-wrap: wrap;
   align-items: center;
   background: var(--darkGrey);
   padding: 0.6em;
@@ -276,9 +272,6 @@ select:focus {
   color: var(--light);
 }
 
-/* --- MEDIA QUERIES PRO RESPONZIVITU --- */
-
-/* Tablety a menší desktop */
 @media (max-width: 1100px) {
   .responsive-layout {
     gap: 1.5em;
@@ -288,7 +281,6 @@ select:focus {
   }
 }
 
-/* Mobily a menší tablety (Přepnutí na vertikální zobrazení) */
 @media (max-width: 850px) {
   .responsive-layout {
     flex-direction: column;
@@ -307,7 +299,6 @@ select:focus {
     font-size: 1.5rem;
   }
 
-  /* Zvětšení klikacích ploch pro mobily */
   select, .glow-button {
     padding: 1.2em;
   }
@@ -317,7 +308,6 @@ select:focus {
   }
 }
 
-/* Velmi malé telefony */
 @media (max-width: 450px) {
   .card-header {
     flex-direction: column;

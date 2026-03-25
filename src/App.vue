@@ -63,4 +63,29 @@ window.onload = typeAllParagraphs;
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.navbar {
+  font-size: large;
+  width: 100%;
+}
+
+.navigation {
+  display: flex;
+  gap: 2em;
+  border-bottom: var(--dark) solid 0.3em;
+  padding-bottom: 0.5em;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 750px) {
+  .navigation {
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+  }
+
+  .navbar h1 {
+    text-align: center;
+  }
+}
+</style>

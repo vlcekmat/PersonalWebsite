@@ -25,7 +25,7 @@ import WebringsSection from "@/components/WebringsSection.vue";
         a lot of random games, activities and hidden easter eggs around!
       </p>
       <br>
-      <p class="typed links-to-fix">
+      <p class="typed links-to-fix typing">
         Since you read this all the way to here, why don't you sign my
         <a href="guestbook">guestbook</a>?
       </p>
