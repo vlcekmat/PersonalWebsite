@@ -6,6 +6,7 @@ import GuestbookView from '@/views/GuestbookView.vue'
 import CodingProjectsView from "@/views/CodingProjectsView.vue";
 import PixelartEditorView from "@/views/PixelartEditorView.vue";
 import CompetitionsView from "@/views/CompetitionsView.vue";
+import ExercisesView from "@/views/ExercisesView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,7 @@ const router = createRouter({
     { path: "/guestbook", component: GuestbookView },
     { path: "/competitions", component: CompetitionsView },
     { path: "/pixelart", component: PixelartEditorView },
+    { path: "/exercises", component: ExercisesView },
     { path: "/guestbook", component: GuestbookView }
   ],
 });

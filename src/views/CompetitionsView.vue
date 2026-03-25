@@ -120,7 +120,7 @@ const fetchSouteze = async () => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .souteze-wrapper {
   width: 100%;
   margin-top: 1em;

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const canvas = document.getElementById('canvas');
-const ctx = canvas?.getContext('2d');
+//const ctx = canvas?.getContext('2d');
 
-ctx.fillRect(10, 10, 150, 100);
+//ctx.fillRect(10, 10, 150, 100);
 </script>
 
 <template>
