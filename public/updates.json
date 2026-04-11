@@ -1,5 +1,11 @@
 [
   {
+    "id": 6,
+    "title": "Exercises",
+    "date": "4/11/2026",
+    "text": "An app for looking up workout exercises has been added!"
+  },
+  {
     "id": 5,
     "title": "Competitions",
     "date": "3/25/2026",

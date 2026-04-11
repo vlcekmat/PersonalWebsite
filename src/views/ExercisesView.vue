@@ -2,7 +2,7 @@
 import {computed, ref} from "vue";
 import type {Exercise} from "@/model/Exercise.ts";
 
-const API_URL = "https://www.exercisedb.dev/api/v1"
+const API_URL = "https://oss.exercisedb.dev/api/v1"
 
 const muscleGroups = [
   { name: "shins" }, { name: "hands" }, { name: "sternocleidomastoid" },
@@ -25,46 +25,22 @@ const muscleGroups = [
 ];
 
 const bodyParts = [
-  { name: "back" },
-  { name: "cardio" },
-  { name: "chest" },
-  { name: "lower arms" },
-  { name: "lower legs" },
-  { name: "neck" },
-  { name: "shoulders" },
-  { name: "upper arms" },
-  { name: "upper legs" },
+  { name: "back" }, { name: "cardio" }, { name: "chest" },
+  { name: "lower arms" }, { name: "lower legs" }, { name: "neck" },
+  { name: "shoulders" }, { name: "upper arms" }, { name: "upper legs" },
   { name: "waist" }
 ];
 
 const equipment = [
-  { name: "assisted" },
-  { name: "band" },
-  { name: "barbell" },
-  { name: "body weight" },
-  { name: "bosu ball" },
-  { name: "cable" },
-  { name: "dumbbell" },
-  { name: "elliptical machine" },
-  { name: "ez barbell" },
-  { name: "hammer" },
-  { name: "kettlebell" },
-  { name: "leverage machine" },
-  { name: "medicine ball" },
-  { name: "olympic barbell" },
-  { name: "resistance band" },
-  { name: "roller" },
-  { name: "rope" },
-  { name: "skierg machine" },
-  { name: "sled machine" },
-  { name: "smith machine" },
-  { name: "stability ball" },
-  { name: "stationary bike" },
-  { name: "stepmill machine" },
-  { name: "tire" },
-  { name: "trap bar" },
-  { name: "upper body ergometer" },
-  { name: "weighted" },
+  { name: "assisted" }, { name: "band" }, { name: "barbell" },
+  { name: "body weight" }, { name: "bosu ball" }, { name: "cable" },
+  { name: "dumbbell" }, { name: "elliptical machine" }, { name: "ez barbell" },
+  { name: "hammer" }, { name: "kettlebell" }, { name: "leverage machine" },
+  { name: "medicine ball" }, { name: "olympic barbell" }, { name: "resistance band" },
+  { name: "roller" }, { name: "rope" }, { name: "skierg machine" },
+  { name: "sled machine" }, { name: "smith machine" }, { name: "stability ball" },
+  { name: "stationary bike" }, { name: "stepmill machine" }, { name: "tire" },
+  { name: "trap bar" }, { name: "upper body ergometer" }, { name: "weighted" },
   { name: "wheel roller" }
 ];
 
@@ -110,36 +86,50 @@ const currentPage = ref(1);
 const totalPages = ref(1);
 const limit = 10;
 
+const pageCursors = ref<string[]>(['']);
+
 const fetchExercises = async (pageNumber = 1) => {
   loading.value = true;
   hasSearched.value = true;
   exercises.value = [];
 
+  // If we are starting a fresh search, reset the cursor stack
+  if (pageNumber === 1) {
+    pageCursors.value = [''];
+  }
+
   try {
     const params = new URLSearchParams();
 
+    // UPDATED: 'search' -> 'name'
     if (fuzzySearchText.value) {
-      params.append("search", fuzzySearchText.value);
+      params.append("name", fuzzySearchText.value);
     }
+    // UPDATED: 'muscles' -> 'targetMuscles'
     if (selectedMuscles.value.length) {
-      params.append("muscles", selectedMuscles.value.join(","));
+      params.append("targetMuscles", selectedMuscles.value.join(","));
     }
+    // 'bodyParts' remains correct
     if (selectedBodyParts.value.length) {
       params.append("bodyParts", selectedBodyParts.value.join(","));
     }
+    // UPDATED: 'equipment' -> 'equipments'
     if (selectedEquipment.value.length) {
-      params.append("equipment", selectedEquipment.value.join(","));
+      params.append("equipments", selectedEquipment.value.join(","));
     }
 
-    params.append("sortBy", "name");
-    params.append("sortOrder", "desc");
-
-    const offset = (pageNumber - 1) * limit;
     params.append("limit", limit.toString());
-    params.append("offset", offset.toString());
+
+    // Pull the correct cursor from our history stack based on the requested page
+    const currentCursor = pageCursors.value[pageNumber - 1];
+
+    // UPDATED: 'cursor' -> 'after'
+    if (currentCursor) {
+      params.append("after", currentCursor);
+    }
 
     const query = params.toString();
-    const endpoint = query ? `${API_URL}/exercises/filter?${query}` : `${API_URL}/exercises/filter`;
+    const endpoint = query ? `${API_URL}/exercises?${query}` : `${API_URL}/exercises`;
 
     const response = await fetch(endpoint);
 
@@ -150,8 +140,15 @@ const fetchExercises = async (pageNumber = 1) => {
     const data = await response.json();
 
     exercises.value = data.data;
-    currentPage.value = data.metadata.currentPage || pageNumber;
-    totalPages.value = data.metadata.totalPages;
+    currentPage.value = pageNumber;
+
+    // Save the next cursor into our array so we can use it to fetch the next page
+    if (data.meta?.nextCursor) {
+      pageCursors.value[pageNumber] = data.meta.nextCursor;
+    }
+
+    const totalItems = data.meta?.total || 0;
+    totalPages.value = Math.ceil(totalItems / limit) || 1;
 
   } catch (error) {
     console.error("Error fetching exercises:", error);
@@ -172,6 +169,18 @@ const prevPage = () => {
     fetchExercises(currentPage.value - 1);
   }
 };
+
+const expandedExercises = ref(new Set<string>());
+
+const toggleInstructions = (id: string) => {
+  if (expandedExercises.value.has(id)) {
+    expandedExercises.value.delete(id);
+  } else {
+    expandedExercises.value.add(id);
+  }
+};
+
+const formatStep = (step: string) => step.replace(/^Step:\d+\s*/i, '');
 </script>
 
 <template>
@@ -275,7 +284,6 @@ const prevPage = () => {
             <h4 class="exercise-title">{{ exercise.name.toUpperCase() }}</h4>
 
             <div class="tag-section">
-              <!-- MUSCLES -->
               <div class="tag-group" v-if="exercise.targetMuscles && exercise.targetMuscles.length">
                 <span class="group-label">MUSCLES:</span>
                 <div class="tags">
@@ -286,7 +294,6 @@ const prevPage = () => {
                 </div>
               </div>
 
-              <!-- BODY PARTS -->
               <div class="tag-group" v-if="exercise.bodyParts && exercise.bodyParts.length">
                 <span class="group-label">BODY_PARTS:</span>
                 <div class="tags">
@@ -296,7 +303,6 @@ const prevPage = () => {
                 </div>
               </div>
 
-              <!-- EQUIPMENT -->
               <div class="tag-group" v-if="exercise.equipments && exercise.equipments.length">
                 <span class="group-label">EQUIPMENT:</span>
                 <div class="tags">
@@ -305,6 +311,21 @@ const prevPage = () => {
                   </span>
                 </div>
               </div>
+            </div>
+
+            <button
+                @click="toggleInstructions(exercise.exerciseId)"
+                class="page-btn toggle-btn"
+            >
+              {{ expandedExercises.has(exercise.exerciseId) ? '- HIDE INSTRUCTIONS' : '+ VIEW INSTRUCTIONS' }}
+            </button>
+
+            <div v-if="expandedExercises.has(exercise.exerciseId)" class="instructions-panel">
+              <ol class="instructions-list">
+                <li v-for="(step, index) in exercise.instructions" :key="'step-'+index">
+                  {{ formatStep(step) }}
+                </li>
+              </ol>
             </div>
 
           </div>
@@ -505,6 +526,30 @@ button[type="button"].clear-btn {
   font-family: monospace;
   color: var(--white, #fff);
   letter-spacing: 1px;
+}
+
+.toggle-btn {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.instructions-panel {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--dark, #333);
+}
+
+.instructions-list {
+  color: var(--white, #ccc);
+  font-size: 0.85rem;
+  padding-left: 1.2rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.instructions-list li {
+  margin-bottom: 0.5rem;
 }
 
 </style>
