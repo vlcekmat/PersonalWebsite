@@ -55,13 +55,6 @@
   max-width: 50em;
 }
 
-.my-flex {
-  display: flex;
-  flex-direction: row;
-  gap: 5em;
-  justify-content: space-between;
-}
-
 .profile {
   border: 2px solid var(--light);
 

@@ -126,76 +126,6 @@ const fetchSouteze = async () => {
   margin-top: 1em;
 }
 
-.responsive-layout {
-  display: flex;
-  flex-direction: row;
-  gap: 3em;
-  margin-top: 2em;
-}
-
-.sidebar {
-  flex: 0 0 300px;
-}
-
-.results-area {
-  flex: 1;
-  min-width: 0;
-}
-
-.cyber-form {
-  background: var(--darkGrey);
-  padding: 1.5em;
-  border-left: 4px solid var(--accent);
-  box-shadow: 5px 5px 0px var(--black);
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.2em;
-}
-
-.cyber-form label {
-  color: var(--light);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  margin-bottom: 0.4em;
-  letter-spacing: 1px;
-}
-
-select {
-  background-color: var(--black);
-  color: var(--white);
-  border: 1px solid var(--dark);
-  padding: 0.7em;
-  font-family: inherit;
-  font-weight: bold;
-  outline: none;
-  width: 100%;
-}
-
-select:focus {
-  border-color: var(--accent);
-}
-
-.glow-button {
-  width: 100%;
-  background-color: var(--dark);
-  color: var(--light);
-  border: 1px solid var(--accent);
-  padding: 1em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-}
-
-.glow-button:hover:not(:disabled) {
-  background-color: var(--accent);
-  color: var(--black);
-  box-shadow: 0 0 15px var(--glow-color);
-}
-
 .status-bar {
   margin-bottom: 1.5em;
   font-size: 0.8rem;
@@ -209,6 +139,13 @@ select:focus {
   flex: 1;
   height: 1px;
   background: var(--dark);
+}
+
+.loading-status {
+  text-align: center;
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin: 2em 0;
 }
 
 .cyber-card {
@@ -270,6 +207,13 @@ select:focus {
   margin-left: auto;
   font-size: 0.85rem;
   color: var(--light);
+}
+
+.no-results {
+  text-align: center;
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin: 2em 0;
 }
 
 @media (max-width: 1100px) {

@@ -45,18 +45,6 @@ import WebringsSection from "@/components/WebringsSection.vue";
 </template>
 
 <style scoped>
-.two-column-grid {
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 2em;
-}
-
-.bordered {
-  border-top: var(--accent) 0.3em solid;
-  padding-top: 0.5em;
-  margin-top: 2em;
-}
-
 @media screen and (max-width: 730px) {
   .two-column-grid {
     display: flex;

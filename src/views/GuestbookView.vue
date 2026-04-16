@@ -126,13 +126,6 @@ onMounted(async () => {
   margin-bottom: 2em;
 }
 
-.my-flex {
-  display: flex;
-  justify-content: left;
-  gap: 5em;
-  margin-top: 3em;
-}
-
 .guestbook-form {
   display: flex;
   flex-direction: column;
@@ -175,43 +168,10 @@ textarea {
   resize: vertical;
 }
 
-.loading-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3em 0;
-  color: var(--dark, #333);
-}
-
-.digital-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid var(--dark);
-  border-left-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 1em;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .no-messages {
   font-style: italic;
   opacity: 0.7;
   margin-top: 1em;
-}
-
-.bordered-bottom {
-  border-bottom: var(--accent) 0.3em solid;
-  padding-bottom: 2em;
 }
 
 @media screen and (max-width: 900px) {

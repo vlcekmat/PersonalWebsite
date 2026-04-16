@@ -181,12 +181,16 @@ const toggleInstructions = (id: string) => {
 };
 
 const formatStep = (step: string) => step.replace(/^Step:\d+\s*/i, '');
+
+const muscleSize = computed(() => Math.min(sortedMuscles.value.length, 20))
+const bodyPartSize = computed(() => Math.min(sortedBodyParts.value.length, 20))
+const equipmentSize = computed(() => Math.min(sortedEquipment.value.length, 20))
 </script>
 
 <template>
   <h2>Exercises</h2>
   <p class="typing">Access to the exercise database: GRANTED</p>
-  <div class="responsive-layout">
+  <div class="responsive-layout" :class="{ 'no-results': exercises.length === 0 }">
     <aside class="sidebar">
       <form class="cyber-form" @submit.prevent="fetchExercises(1)">
 
@@ -204,6 +208,7 @@ const formatStep = (step: string) => step.replace(/^Step:\d+\s*/i, '');
               id="muscle-select"
               v-model="selectedMuscles"
               multiple
+              :size="muscleSize"
           >
             <option v-for="muscle in sortedMuscles" :key="muscle.name" :value="muscle.name">
               {{ muscle.name.charAt(0).toUpperCase() + muscle.name.slice(1) }}
@@ -224,6 +229,7 @@ const formatStep = (step: string) => step.replace(/^Step:\d+\s*/i, '');
               id="bodypart-select"
               v-model="selectedBodyParts"
               multiple
+              :size="bodyPartSize"
           >
             <option v-for="bodyPart in sortedBodyParts" :key="bodyPart.name" :value="bodyPart.name">
               {{ bodyPart.name.charAt(0).toUpperCase() + bodyPart.name.slice(1) }}
@@ -244,6 +250,7 @@ const formatStep = (step: string) => step.replace(/^Step:\d+\s*/i, '');
               id="equipment-select"
               v-model="selectedEquipment"
               multiple
+              :size="equipmentSize"
           >
             <option v-for="equipment in sortedEquipment" :key="equipment.name" :value="equipment.name">
               {{ equipment.name.charAt(0).toUpperCase() + equipment.name.slice(1) }}
@@ -316,17 +323,11 @@ const formatStep = (step: string) => step.replace(/^Step:\d+\s*/i, '');
             <button
                 @click="toggleInstructions(exercise.exerciseId)"
                 class="page-btn toggle-btn"
+                type="button"
             >
-              {{ expandedExercises.has(exercise.exerciseId) ? '- HIDE INSTRUCTIONS' : '+ VIEW INSTRUCTIONS' }}
+              {{ expandedExercises.has(exercise.exerciseId) ? '✕ CLOSE' : '+ VIEW INSTRUCTIONS' }}
             </button>
 
-            <div v-if="expandedExercises.has(exercise.exerciseId)" class="instructions-panel">
-              <ol class="instructions-list">
-                <li v-for="(step, index) in exercise.instructions" :key="'step-'+index">
-                  {{ formatStep(step) }}
-                </li>
-              </ol>
-            </div>
 
           </div>
         </div>
@@ -356,48 +357,48 @@ const formatStep = (step: string) => step.replace(/^Step:\d+\s*/i, '');
       </div>
     </main>
 
+    <!-- Instructions Overlay Modal -->
+    <div
+      v-if="expandedExercises.size > 0"
+      class="instructions-overlay"
+      @click.self="expandedExercises.clear()"
+    >
+      <div class="instructions-modal">
+        <div class="modal-header">
+          <h3>EXERCISE INSTRUCTIONS</h3>
+          <button
+            @click="expandedExercises.clear()"
+            class="close-btn"
+            aria-label="Close instructions"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <div
+            v-for="exercise in exercises.filter(e => expandedExercises.has(e.exerciseId))"
+            :key="exercise.exerciseId"
+            class="instruction-content"
+          >
+            <h4 class="instruction-title">{{ exercise.name.toUpperCase() }}</h4>
+            <ol class="instructions-list">
+              <li v-for="(step, index) in exercise.instructions" :key="'step-'+index">
+                <span class="step-number">{{ index + 1 }})</span>
+                {{ formatStep(step) }}
+              </li>
+            </ol>
+            <div v-if="exercise.gifUrl" class="exercise-modal-img">
+              <img :src="exercise.gifUrl" :alt="exercise.name" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </template>
 
 <style scoped>
-input {
-  background-color: var(--black);
-  color: var(--white);
-  border: 1px solid var(--dark);
-  padding: 0.7em;
-  font-family: inherit;
-  font-weight: bold;
-  outline: none;
-  width: 100%;
-}
-
-.clear-btn {
-  background-color: var(--accent);
-  color: var(--black);
-  border: none;
-  padding: 0.5em;
-  font-size: 0.8em;
-  font-family: inherit;
-  margin-top: 0.5em;
-  cursor: pointer;
-}
-
-
-.responsive-layout {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-}
-
-.sidebar {
-  flex: 0 0 300px;
-}
-
-.results-area {
-  flex: 1;
-}
-
 .system-message {
   border: 1px dashed var(--accent, #0f0);
   padding: 2rem;
@@ -408,16 +409,18 @@ input {
 
 .exercise-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15.625rem, 1fr));
   gap: 1.5rem;
 }
 
 .exercise-card {
   background: var(--black, #111);
   border: 1px solid var(--dark, #333);
-  border-radius: 4px;
+  border-radius: 0.25rem;
   overflow: hidden;
   transition: border-color 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .exercise-card:hover {
@@ -426,23 +429,19 @@ input {
 
 .exercise-img {
   width: 100%;
-  height: 250px;
+  height: 15.625rem;
   object-fit: cover;
   background-color: #fff;
+  flex-shrink: 0;
 }
 
 .card-content {
   padding: 1rem;
-}
-
-.exercise-title {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
-  color: var(--white, #fff);
-}
-
-.card-content {
-  padding: 1rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  gap: 0;
+  flex: 1;
 }
 
 .exercise-title {
@@ -451,30 +450,32 @@ input {
   color: var(--white, #fff);
   border-bottom: 1px solid var(--dark, #333);
   padding-bottom: 0.5rem;
+  grid-row: 1;
 }
 
 .tag-section {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem; /* Mezera mezi kategoriemi */
+  gap: 0.8rem;
+  grid-row: 2;
 }
 
 .tag-group {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem; /* Mezera mezi nadpisem a štítky */
+  gap: 0.3rem;
 }
 
 .group-label {
   font-size: 0.65rem;
-  color: #888; /* Tmavší šedá pro nerušivý popisek */
-  letter-spacing: 1px;
+  color: #888;
+  letter-spacing: 0.0625rem;
   font-family: monospace;
 }
 
 .tags {
   display: flex;
-  flex-wrap: wrap; /* Pokud je štítků hodně, zalamují se na další řádek */
+  flex-wrap: wrap;
   gap: 0.4rem;
 }
 
@@ -484,7 +485,7 @@ input {
   color: var(--accent, #0f0);
   padding: 0.2rem 0.6rem;
   font-family: monospace;
-  border-radius: 2px;
+  border-radius: 0.125rem;
 }
 
 button[type="button"].clear-btn {
@@ -525,31 +526,177 @@ button[type="button"].clear-btn {
 .page-info {
   font-family: monospace;
   color: var(--white, #fff);
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;
 }
 
 .toggle-btn {
-  width: 100%;
-  margin-top: 1rem;
-  font-size: 0.8rem;
+  margin-top: 0.75em;
 }
 
-.instructions-panel {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px dashed var(--dark, #333);
+/* Instructions Overlay Modal */
+.instructions-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.instructions-modal {
+  background: var(--darkGrey, #24283b);
+  border: 2px solid var(--accent, #ff9e64);
+  border-radius: 0.25rem;
+  max-width: 43.75rem;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--accent, #ff9e64);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--accent, #ff9e64);
+  font-size: 1.1rem;
+  letter-spacing: 0.0625rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--accent, #ff9e64);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  color: var(--accentHover, #db4b4b);
+  transform: scale(1.1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.instruction-content {
+  margin-bottom: 2rem;
+}
+
+.instruction-content:last-child {
+  margin-bottom: 0;
+}
+
+.exercise-modal-img {
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  max-width: 18.75rem;
+}
+
+.exercise-modal-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.instruction-title {
+  color: var(--white, #c0caf5);
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--accent, #ff9e64);
 }
 
 .instructions-list {
-  color: var(--white, #ccc);
-  font-size: 0.85rem;
-  padding-left: 1.2rem;
-  line-height: 1.4;
+  color: var(--white, #c0caf5);
+  font-size: 0.9rem;
+  padding-left: 1.5rem;
+  line-height: 1.6;
   margin: 0;
 }
 
 .instructions-list li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--light, #ffe5c7);
 }
 
+.step-number {
+  color: var(--accent, #ff9e64);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+input {
+  background-color: var(--black);
+  color: var(--white);
+  border: 1px solid var(--dark);
+  padding: 0.7em;
+  font-family: inherit;
+  font-weight: bold;
+  outline: none;
+  width: 100%;
+}
+
+.no-results {
+  justify-content: center;
+}
+
+.no-results .sidebar {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.no-results .cyber-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-results .input-group {
+  width: 37.5rem;
+  max-width: 100%;
+}
+
+.no-results .results-area {
+  display: none;
+}
+
+@media screen and (max-width: 750px) {
+  .no-results .sidebar {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .no-results .input-group {
+    width: 100%;
+  }
+}
 </style>
